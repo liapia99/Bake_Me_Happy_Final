@@ -1,0 +1,35 @@
+body {
+    font-family: Impact, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: url('/static/cake.jpg');
+     /* Replace with your image path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+h1 {
+    color: #e582d6; 
+    font-size: 50px;
+    margin-top: 300px;
+}
+p {
+    margin-bottom: 20px;
+    color: #e582d6; 
+    font-size: 15px;
+}
+.order-now-button {
+    background-color: rgba(229,130,214, 0.9); /* Orange color with 70% opacity */
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.order-now-button:hover {
+    background-color: rgba(224, 146, 212, 0.9); /* Lighter shade of orange with 90% opacity on hover */
+}
