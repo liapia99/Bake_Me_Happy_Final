@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Order</title>
+</head>
+<body>
+    <h1>Confirm Order</h1>
+
+    <h2>Order Details:</h2>
+    <p>Delivery Date and Time: {{ order_details.delivery_date_time }}</p>
+    <p>Name: {{ order_details.name }}</p>
+    <p>Email: {{ order_details.email }}</p>
+    <p>Delivery Address: {{ order_details.address }}</p>
+
+    <h2>Cake Details:</h2>
+    <p>Flavor: {{ cake_details.flavor }}</p>
+    <p>Layers: {{ cake_details.layers }}</p>
+    <p>Hidden Ring: {{ cake_details.hidden_ring }}</p>
+    <p>Vegan Option: {{ cake_details.vegan_option }}</p>
+    <p>Additional Fillings: {{ cake_details.fillings }}</p>
+
+    <h2>Design Details:</h2>
+    <p>Frosting Flavor: {{ design_details.frosting_flavor }}</p>
+    <p>Base Color: {{ design_details.base_color }}</p>
+    <p>Number of Decorations: {{ design_details.num_decorations }}</p>
+    <p>Decorations:</p>
+    <ul>
+        {% for decoration in design_details.decorations %}
+            <li>{{ decoration.name }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/thank_you" method="get">
+        <button type="submit">Submit Order</button>
+    </form>
+</body>
+</html>
