@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Design Customization</title>
+</head>
+<body>
+    <h1>Cake Design Customization</h1>
+    <form action="/design" method="post">
+        <label for="frosting_flavor">Choose Frosting Flavor:</label><br>
+        <select id="frosting_flavor" name="frosting_flavor" required>
+            <option value="Vanilla">Vanilla</option>
+            <option value="Chocolate">Chocolate</option>
+            <option value="Strawberry">Strawberry</option>
+            <option value="Lemon">Lemon</option>
+            <option value="Cream Cheese">Cream Cheese</option>
+        </select><br><br>
+
+        <label for="base_color">Choose Base Frosting Color:</label><br>
+        <select id="base_color" name="base_color" required>
+            <option value="Red">Red</option>
+            <option value="Orange">Orange</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Purple">Purple</option>
+            <option value="Pink">Pink</option>
+            <option value="White">White</option>
+            <option value="Black">Black</option>
+        </select><br><br>
+
+        <label for="num_decorations">Number of Decorations:</label>
+        <input type="number" id="num_decorations" name="num_decorations" min="1" required><br><br>
+
+        <div id="decoration_choices">
+            <!-- Additional decoration choices will be added here dynamically -->
+        </div>
+
+        <button type="submit" class="design-button">Finalize Order</button>
+    </form>
+
+    <script>
+        // Predefined decoration options
+        const decorations = ['Flowers', 'Balloons', 'Swirls'];
+
+        // JavaScript to dynamically add checkboxes for decorations
+        document.getElementById('num_decorations').addEventListener('change', function() {
+            var numDecorations = parseInt(this.value);
+            var decorationChoices = document.getElementById('decoration_choices');
+            decorationChoices.innerHTML = ''; // Clear previous decoration choices
+
+            for (var i = 1; i <= numDecorations; i++) {
+                var decorationLabel = document.createElement('label');
+                decorationLabel.textContent = 'Choose Decoration ' + i + ':';
+                decorationChoices.appendChild(decorationLabel);
+                decorationChoices.appendChild(document.createElement('br'));
+
+                for (var k = 0; k < decorations.length; k++) {
+                    var decorationCheckbox = document.createElement('input');
+                    decorationCheckbox.setAttribute('type', 'checkbox');
+                    decorationCheckbox.setAttribute('id', 'decoration' + i + '_' + k);
+                    decorationCheckbox.setAttribute('name', 'decoration' + i);
+                    decorationCheckbox.setAttribute('value', decorations[k]);
+
+                    var decorationOptionLabel = document.createElement('label');
+                    decorationOptionLabel.setAttribute('for', 'decoration' + i + '_' + k);
+                    decorationOptionLabel.textContent = ' ' + decorations[k];
+
+                    decorationChoices.appendChild(decorationCheckbox);
+                    decorationChoices.appendChild(decorationOptionLabel);
+                    decorationChoices.appendChild(document.createElement('br'));
+                }
+
+                decorationChoices.appendChild(document.createElement('br'));
+            }
+        });
+    </script>
+</body>
+</html>

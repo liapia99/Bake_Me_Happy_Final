@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customize Your Cake</title>
+</head>
+<body>
+
+<h1>Customize Your Cake</h1>
+
+<form action="/customize_cake" method="post">
+    <label for="flavor">Choose Cake Flavor:</label><br>
+    <select id="flavor" name="flavor" required>
+        <option value="coconut">Coconut</option>
+        <option value="vanilla">Vanilla</option>
+        <option value="lemon">Lemon</option>
+        <option value="chocolate">Chocolate</option>
+        <option value="red velvet">Red Velvet</option>
+        <option value="funfetti">Funfetti</option>
+        <option value="carrot">Carrot</option>
+    </select><br><br>
+
+    <label for="layers">Choose Number of Layers (1-3):</label>
+    <input type="number" id="layers" name="layers" min="1" max="3" required><br><br>
+
+    <div id="fillings">
+        <label for="filling1">Choose Filling 1:</label><br>
+        <select id="filling1" name="filling1" required>
+            <option value="chocolate mousse">Chocolate Mousse</option>
+            <option value="raspberry">Raspberry</option>
+            <option value="peach">Peach</option>
+            <option value="buttercream">Buttercream</option>
+            <option value="nutella buttercream">Nutella Buttercream</option>
+            <option value="whipped cream">Whipped Cream</option>
+        </select><br><br>
+
+        <div id="additional_fillings">
+            <!-- Additional fillings will be added here dynamically -->
+        </div>
+    </div>
+
+    <label for="hidden_ring">Do You Want a Hidden Ring (Yes/No)?</label>
+    <select id="hidden_ring" name="hidden_ring" required>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select><br><br>
+
+    <label for="vegan_option">Do You Want an All Vegan Cake (Yes/No)?</label>
+    <select id="vegan_option" name="vegan_option" required>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select><br><br>
+
+    <!-- Continue designing button -->
+    <form action="/design" method="get">
+        <button type="submit" class="cake-button">Continue with Customizing</button>
+    </form>
+</form>
+
+<script>
+    // JavaScript to show/hide additional fillings based on the number of layers
+    document.getElementById('layers').addEventListener('change', function() {
+        var layers = parseInt(this.value);
+        var additionalFillings = document.getElementById('additional_fillings');
+
+        // Clear existing additional fillings
+        additionalFillings.innerHTML = '';
+
+        if (layers > 1) {
+            additionalFillings.style.display = 'block';
+            
+            for (var i = 2; i <= layers; i++) {
+                var label = document.createElement('label');
+                label.setAttribute('for', 'Filling' + i);
+                label.textContent = 'Choose Filling ' + i + ':';
+                additionalFillings.appendChild(label);
+                additionalFillings.appendChild(document.createElement('br'));
+
+                var select = document.createElement('select');
+                select.setAttribute('id', 'Filling' + i);
+                select.setAttribute('name', 'Filling' + i);
+                select.setAttribute('required', 'true');
+
+                // Filling options
+                var options = ['Chocolate Mousse', 'Raspberry', 'Peach', 'Buttercream', 'Nutella Buttercream', 'Whipped Cream'];
+                for (var j = 0; j < options.length; j++) {
+                    var option = document.createElement('option');
+                    option.setAttribute('value', options[j]);
+                    option.textContent = options[j];
+                    select.appendChild(option);
+                }
+
+                additionalFillings.appendChild(select);
+                additionalFillings.appendChild(document.createElement('br'));
+                additionalFillings.appendChild(document.createElement('br'));
+            }
+        } else {
+            additionalFillings.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
